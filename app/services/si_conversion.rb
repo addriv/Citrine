@@ -9,24 +9,6 @@ class SiConversion
     @multiplication_factor = convert
   end
 
-  # Postfix
-  # 1. Parse query into an array
-  # 2. Create a stack
-  # 3. Iterate through query array
-  # 4. If el == "(", push to stack
-  # 5. Elsif == ")", pop off stack until hitting "("
-  # 6. Elsif operator
-  #   * Check the last item in the stack if != "("
-  #   * Pop off stack and push to output
-  #   * Push operator
-  # 7. Else, output push token
-
-  # Evaluation
-  # 1. Iterate through array
-  #   * If el == "/" or "*"
-  #     * new array = Arr[0...i - 2] + [i - 2 op i - 1] + Arr[i+1..-1]
-  #     * i -= 1
-
   def self.convert_unit(unit, type)
     conversion_table = {
       "minute" => { factor: 60, unit: "s"},
@@ -38,8 +20,10 @@ class SiConversion
       "degree" => { factor: (Math::PI/180), unit: "rad"},
       "°" => { factor: (Math::PI/180), unit: "rad"},
       "'" => { factor: (Math::PI/10800), unit: "rad"},
+      "‘" => { factor: (Math::PI/10800), unit: "rad"},
       "second" => { factor: (Math::PI/64800), unit: "rad"},
       '"' => { factor: (Math::PI/64800), unit: "rad"},
+      "“" => { factor: (Math::PI/64800), unit: "rad"},
       "hectare" => { factor: 10000, unit: "m^2"},
       "ha" => { factor: 10000, unit: "m^2"},
       "litre" => { factor: 0.001, unit: "m^3"},
